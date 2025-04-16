@@ -1,6 +1,6 @@
 <launch>
   <arg name="launch_driver" default="true"/>
-  <arg name="gnss_receiver" default="ublox" description="ublox(default) or septentrio"/>
+  <arg name="gnss_receiver" default="xsens" description="xsenx MTi GPS RTK receiver (default)"/>
 
   <group>
     <push-ros-namespace namespace="gnss"/>
@@ -8,6 +8,9 @@
     <!-- Switch topic name -->
     <let name="navsatfix_topic_name" value="ublox/nav_sat_fix" if="$(eval &quot;'$(var gnss_receiver)'=='ublox'&quot;)"/>
     <let name="navsatfix_topic_name" value="septentrio/nav_sat_fix" if="$(eval &quot;'$(var gnss_receiver)'=='septentrio'&quot;)"/>
+
+    <let name="navsatfix_topic_name" value="gnss" if="$(eval &quot;'$(var gnss_receiver)'=='xsens'&quot;)"/>
+
     <let name="orientation_topic_name" value="/autoware_orientation"/>
 
     <!-- Ublox Driver -->
@@ -22,6 +25,20 @@
     <group if="$(eval &quot;'$(var launch_driver)' and '$(var gnss_receiver)'=='septentrio'&quot;)">
       <include file="$(find-pkg-share septentrio_gnss_driver)/launch/mosaic_x5_rover.launch.xml"/>
     </group>
+
+    <!-- xsens GPS-RTK Driver -->
+    <group if="$(eval &quot;'$(var launch_driver)' and '$(var gnss_receiver)'=='xsens'&quot;)">
+      <!-- Launch xsens -->
+        <include file="$(find-pkg-share xsens_mti_ros2_driver)/launch/xsens_mti_node.launch.py"/>
+      <!-- Launch ntrip -->
+        <include file="$(find-pkg-share ntrip)/launch/ntrip_launch.py"/>
+      <!-- Running Autoware INS orientation node -->
+        <node pkg="autoware_ins" name="autoware_ins" exec="autoware_ins_node" if="$(var launch_driver)" respawn="true" respawn_delay="1.0">
+          <param from="$(find-pkg-share autoware_ins)/config/autoware_ins-params.yaml"/>
+        </node>
+    </group>
+
+    <!-- <arg name="gnss_frame" value="gps"/> -->
 
     <!-- NavSatFix to MGRS Pose -->
     <include file="$(find-pkg-share autoware_gnss_poser)/launch/gnss_poser.launch.xml">
