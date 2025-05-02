@@ -6,36 +6,20 @@
     <push-ros-namespace namespace="gnss"/>
 
     <!-- Switch topic name -->
-    <let name="navsatfix_topic_name" value="ublox/nav_sat_fix" if="$(eval &quot;'$(var gnss_receiver)'=='ublox'&quot;)"/>
-    <let name="navsatfix_topic_name" value="septentrio/nav_sat_fix" if="$(eval &quot;'$(var gnss_receiver)'=='septentrio'&quot;)"/>
-
-    <let name="navsatfix_topic_name" value="gnss" if="$(eval &quot;'$(var gnss_receiver)'=='xsens'&quot;)"/>
+    <let name="navsatfix_topic_name" value="/gnss"/>
 
     <let name="orientation_topic_name" value="/autoware_orientation"/>
 
-    <!-- Ublox Driver -->
-    <group if="$(eval &quot;'$(var gnss_receiver)'=='ublox'&quot;)">
-      <node pkg="ublox_gps" name="ublox" exec="ublox_gps_node" if="$(var launch_driver)" respawn="true" respawn_delay="1.0">
-        <remap from="~/fix" to="~/nav_sat_fix"/>
-        <param from="$(find-pkg-share ublox_gps)/c94_f9p_rover.yaml"/>
-      </node>
-    </group>
-
-    <!-- Septentrio GNSS Driver -->
-    <group if="$(eval &quot;'$(var launch_driver)' and '$(var gnss_receiver)'=='septentrio'&quot;)">
-      <include file="$(find-pkg-share septentrio_gnss_driver)/launch/mosaic_x5_rover.launch.xml"/>
-    </group>
-
     <!-- xsens GPS-RTK Driver -->
-    <group if="$(eval &quot;'$(var launch_driver)' and '$(var gnss_receiver)'=='xsens'&quot;)">
+    <group if="$(eval &quot;'$(var launch_driver)'&quot;)">
       <!-- Launch xsens -->
-        <include file="$(find-pkg-share xsens_mti_ros2_driver)/launch/xsens_mti_node.launch.py"/>
+      <include file="$(find-pkg-share xsens_mti_ros2_driver)/launch/xsens_mti_node.launch.py"/>
       <!-- Launch ntrip -->
-        <include file="$(find-pkg-share ntrip)/launch/ntrip_launch.py"/>
+      <include file="$(find-pkg-share ntrip)/launch/ntrip_launch.py"/>
       <!-- Running Autoware INS orientation node -->
-        <node pkg="autoware_ins" name="autoware_ins" exec="autoware_ins_node" if="$(var launch_driver)" respawn="true" respawn_delay="1.0">
-          <param from="$(find-pkg-share autoware_ins)/config/autoware_ins-params.yaml"/>
-        </node>
+      <node pkg="autoware_ins" name="autoware_ins" exec="autoware_ins_node" if="$(var launch_driver)" respawn="true" respawn_delay="1.0">
+        <param from="$(find-pkg-share autoware_ins)/config/autoware_ins-params.yaml"/>
+      </node>
     </group>
 
     <!-- <arg name="gnss_frame" value="gps"/> -->
@@ -50,6 +34,8 @@
       <arg name="output_topic_gnss_fixed" value="fixed"/>
 
       <arg name="use_gnss_ins_orientation" value="true"/>
+
+      <arg name="gnss_frame" value="gnss_link"/>
     </include>
   </group>
 </launch>
