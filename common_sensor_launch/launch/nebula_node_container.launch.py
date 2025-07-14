@@ -128,6 +128,8 @@ def launch_setup(context, *args, **kwargs):
                         "min_range",
                         "max_range",
                         "frame_id",
+                        "diag_span",
+                        "advanced_diagnostics",
                         "scan_phase",
                         "cloud_min_angle",
                         "cloud_max_angle",
