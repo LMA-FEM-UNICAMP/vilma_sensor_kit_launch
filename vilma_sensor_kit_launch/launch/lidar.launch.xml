@@ -1,5 +1,5 @@
 <launch>
-  <arg name="launch_driver" default="true"/>
+  <arg name="launch_driver" default="false"/>
   <arg name="host_ip" default="192.168.140.4"/>
   <arg name="use_concat_filter" default="true"/>
   <arg name="vehicle_id" default="$(env VEHICLE_ID default)"/>
@@ -18,7 +18,7 @@
       <push-ros-namespace namespace="front"/>
       <include file="$(find-pkg-share common_sensor_launch)/launch/velodyne_VLP16.launch.xml">
         <!-- <arg name="max_range" value="1.5"/> -->
-        <arg name="sensor_frame" value="velodyne_front"/>
+        <arg name="sensor_frame" value="vlp16_front"/>
         <arg name="sensor_ip" value="192.168.140.11"/>
         <arg name="host_ip" value="$(var host_ip)"/>
         <arg name="data_port" value="2370"/>
