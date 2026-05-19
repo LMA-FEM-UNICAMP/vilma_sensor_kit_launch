@@ -1,5 +1,6 @@
 <launch>
   <arg name="launch_driver" default="true"/>
+  <arg name="launch_rtk" default="false"/>
   <arg name="gnss_receiver" default="xsens" description="xsenx MTi GPS RTK receiver (default)"/>
 
   <group>
@@ -10,15 +11,17 @@
 
     <let name="orientation_topic_name" value="/autoware_orientation"/>
 
-    <!-- xsens GPS-RTK Driver -->
     <group if="$(eval &quot;'$(var launch_driver)'&quot;)">
-      <!-- Launch ntrip -->
-      <include file="$(find-pkg-share ntrip)/launch/ntrip_launch.py"/>
-
       <!-- Running Autoware INS orientation node -->
       <node pkg="autoware_ins" name="autoware_ins" exec="autoware_ins_node" respawn="true" respawn_delay="1.0">
         <param from="$(find-pkg-share autoware_ins)/config/autoware_ins-params.yaml"/>
       </node>
+    </group>
+
+    <!-- xsens GPS-RTK Driver -->
+    <group if="$(eval &quot;'$(var launch_rtk)'&quot;)">
+      <!-- Launch ntrip -->
+      <include file="$(find-pkg-share ntrip)/launch/ntrip_launch.py"/>
     </group>
 
     <!-- <arg name="gnss_frame" value="gps"/> -->
