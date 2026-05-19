@@ -13,7 +13,14 @@
       </node>
     </group> -->
 
-    <arg name="imu_raw_name" default="tamagawa/imu_raw"/>
+    <!-- xsens GNSS/INS Driver -->
+    <group if="$(eval &quot;'$(var launch_driver)'&quot;)">
+      <push-ros-namespace namespace="xsens"/>
+      <!-- Launch xsens -->
+      <include file="$(find-pkg-share xsens_mti_ros2_driver)/launch/xsens_mti_node_lite.launch.py"/>
+    </group>
+
+    <arg name="imu_raw_name" default="xsens/imu/data"/>
     <arg name="imu_corrector_param_file" default="$(find-pkg-share individual_params)/config/$(var vehicle_id)/sample_sensor_kit/imu_corrector.param.yaml"/>
     <include file="$(find-pkg-share autoware_imu_corrector)/launch/imu_corrector.launch.xml">
       <arg name="input_topic" value="$(var imu_raw_name)"/>

@@ -6,18 +6,17 @@
     <push-ros-namespace namespace="gnss"/>
 
     <!-- Switch topic name -->
-    <let name="navsatfix_topic_name" value="/gnss"/>
+    <let name="navsatfix_topic_name" value="xsens/gnss"/>
 
     <let name="orientation_topic_name" value="/autoware_orientation"/>
 
     <!-- xsens GPS-RTK Driver -->
     <group if="$(eval &quot;'$(var launch_driver)'&quot;)">
-      <!-- Launch xsens -->
-      <include file="$(find-pkg-share xsens_mti_ros2_driver)/launch/xsens_mti_node.launch.py"/>
       <!-- Launch ntrip -->
       <include file="$(find-pkg-share ntrip)/launch/ntrip_launch.py"/>
+
       <!-- Running Autoware INS orientation node -->
-      <node pkg="autoware_ins" name="autoware_ins" exec="autoware_ins_node" if="$(var launch_driver)" respawn="true" respawn_delay="1.0">
+      <node pkg="autoware_ins" name="autoware_ins" exec="autoware_ins_node" respawn="true" respawn_delay="1.0">
         <param from="$(find-pkg-share autoware_ins)/config/autoware_ins-params.yaml"/>
       </node>
     </group>
