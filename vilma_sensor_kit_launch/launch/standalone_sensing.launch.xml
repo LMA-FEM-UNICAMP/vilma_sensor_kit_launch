@@ -17,7 +17,7 @@
   <arg name="launch_system" default="false" description="launch system"/>
   <arg name="launch_map" default="false" description="launch map"/>
   <arg name="launch_sensing" default="true" description="launch sensing"/>
-  <arg name="launch_sensing_driver" default="false" description="launch sensing driver"/>
+  <arg name="launch_sensing_driver" default="true" description="launch sensing driver"/>
   <arg name="launch_localization" default="false" description="launch localization"/>
   <arg name="launch_perception" default="false" description="launch perception"/>
   <arg name="launch_planning" default="false" description="launch planning"/>
@@ -52,7 +52,7 @@
 
   <!-- Global parameters -->
   <group scoped="false">
-    <include file="$(find-pkg-share autoware_global_parameter_loader)/launch/global_params.launch.py">
+    <include file="$(find-pkg-share global_parameter_loader)/launch/global_params.launch.py">
       <arg name="use_sim_time" value="$(var use_sim_time)"/>
       <arg name="vehicle_model" value="$(var vehicle_model)"/>
     </include>
