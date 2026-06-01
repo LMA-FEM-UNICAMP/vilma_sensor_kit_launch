@@ -7,7 +7,7 @@
     <push-ros-namespace namespace="gnss"/>
 
     <!-- Switch topic name -->
-    <let name="navsatfix_topic_name" value="xsens/gnss"/>
+    <let name="navsatfix_topic_name" value="/gnss"/>
 
     <let name="orientation_topic_name" value="/autoware_orientation"/>
 
