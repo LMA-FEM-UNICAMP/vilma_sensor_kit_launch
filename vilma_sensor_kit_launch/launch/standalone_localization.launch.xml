@@ -14,10 +14,10 @@
 
   <!-- Optional parameters -->
   <!-- Modules to be launched -->
-  <arg name="launch_vehicle" default="false" description="launch vehicle"/>
+  <arg name="launch_vehicle" default="true" description="launch vehicle"/>
   <arg name="launch_system" default="true" description="launch system"/>
   <arg name="launch_map" default="true" description="launch map"/>
-  <arg name="launch_sensing" default="false" description="launch sensing"/>
+  <arg name="launch_sensing" default="true" description="launch sensing"/>
   <arg name="launch_sensing_driver" default="false" description="launch sensing driver"/>
   <arg name="launch_localization" default="true" description="launch localization"/>
   <arg name="launch_perception" default="false" description="launch perception"/>
@@ -160,6 +160,12 @@
 
       <arg name="gnss_frame" value="gnss_link"/>
     </include>
+
+
+    <!-- <include file="$(find-pkg-share geo_pose_projector)/launch/geo_pose_projector.launch.xml">
+      <arg name="input_geo_pose" value="$(var navsatfix_topic_name)"/>
+      <arg name="output_pose" value="gnss_map_coordinates"/>
+    </include> -->
 
   </group>
 </launch>
