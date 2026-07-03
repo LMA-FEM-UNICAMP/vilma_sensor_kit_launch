@@ -291,7 +291,7 @@ def generate_launch_description():
     add_launch_arg("use_multithread", "False", "use multithread")
     add_launch_arg("use_intra_process", "False", "use ROS 2 component container communication")
     add_launch_arg("lidar_container_name", "nebula_node_container")
-    add_launch_arg("output_as_sensor_frame", "True", "output final pointcloud in sensor frame")
+    add_launch_arg("output_as_sensor_frame", "False", "output final pointcloud in sensor frame")
 
     set_container_executable = SetLaunchConfiguration(
         "container_executable",
