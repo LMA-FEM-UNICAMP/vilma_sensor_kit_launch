@@ -1,6 +1,6 @@
 base_link:
   sensor_kit_base_link:
-    x: 2.3 # Estimated
+    x: 1.5 # Estimated
     y: 0.0 # N/A
     z: 1.174232680995941 # Ground plane calibrator
     roll: 0.005707076062172211 # Ground plane calibrator
@@ -8,9 +8,9 @@ base_link:
     yaw: -0.09 # Estimated
 
   gnss_link: # aka imu_link
-    x: 2.306
+    x: 1.506
     y: -0.011
-    z: 1.6467
+    z: 1.2392
     roll: 0
     pitch: 0
     yaw: 0

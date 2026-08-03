@@ -7,11 +7,11 @@ sensor_kit_base_link:
     pitch: 0.0
     yaw: 0.0
   vlp16_back:
-    x: -2.0
+    x: -1.3
     y: 0.0
-    z: -0.15
+    z: -0.2
     roll: 0.0
-    pitch: 0.0
+    pitch: -0.12350831632256132
     yaw: 0.0
   # gnss_link: # aka imu_link
   #   x: 0.006
