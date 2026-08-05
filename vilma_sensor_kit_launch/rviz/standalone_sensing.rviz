@@ -7,9 +7,9 @@ Panels:
         - /Global Options1
         - /System1
         - /System1/Vehicle1
-        - /System1/Vehicle1/VehicleModel1
         - /Sensing1
         - /Sensing1/LiDAR1
+        - /Sensing1/LiDAR1/ConcatenatePointCloud1
         - /Sensing1/LiDAR1/ConcatenatePointCloud1/Autocompute Value Bounds1
       Splitter Ratio: 0.557669460773468
     Tree Height: 261
@@ -174,7 +174,7 @@ Visualization Manager:
               Wave Color: 255; 255; 255
               Wave Velocity: 40
             - Class: autoware_overlay_rviz_plugin/SignalDisplay
-              Enabled: false
+              Enabled: true
               Gear Topic Test: /vehicle/status/gear_status
               Hazard Lights Topic: /vehicle/status/hazard_lights_status
               Height: 100
@@ -187,7 +187,7 @@ Visualization Manager:
               Top: 10
               Traffic Topic: /planning/scenario_planning/lane_driving/behavior_planning/debug/traffic_signal
               Turn Signals Topic: /vehicle/status/turn_indicators_status
-              Value: false
+              Value: true
               Width: 550
           Enabled: true
           Name: Vehicle
@@ -284,7 +284,7 @@ Visualization Manager:
               Name: ConcatenatePointCloud
               Position Transformer: XYZ
               Selectable: false
-              Size (Pixels): 1
+              Size (Pixels): 5
               Size (m): 0.019999999552965164
               Style: Points
               Topic:
@@ -293,7 +293,7 @@ Visualization Manager:
                 Filter size: 10
                 History Policy: Keep Last
                 Reliability Policy: Best Effort
-                Value: /sensing/lidar/concatenated/pointcloud
+                Value: /sensing/lidar/front/pointcloud_before_sync
               Use Fixed Frame: false
               Use rainbow: true
               Value: true
@@ -312,9 +312,9 @@ Visualization Manager:
               Enabled: true
               Invert Rainbow: false
               Max Color: 255; 255; 255
-              Max Intensity: 203
+              Max Intensity: 138
               Min Color: 0; 0; 0
-              Min Intensity: 0
+              Min Intensity: 1
               Name: Raw PointCloud
               Position Transformer: XYZ
               Selectable: true
@@ -3048,18 +3048,7 @@ Visualization Manager:
                     Value: true
                   Map: true
                   Perception:
-                    CameraLidarFusion(purple): true
-                    Centerpoint(red1): true
-                    CenterpointROIFusion(red2): true
-                    CenterpointValidator(red3): true
-                    Detection(yellow): true
-                    DetectionByTracker(orange): true
-                    PointPainting(light_green1): true
-                    PointPaintingROIFusion(light_green2): true
-                    PointPaintingValidator(light_green3): true
-                    Prediction(light_blue): true
-                    RadarFarObjects(white): true
-                    Tracking(green): true
+                    "": true
                     Value: true
                   Planning:
                     "":
@@ -4421,10 +4410,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.4847978949546814
+      Pitch: 0.4597979485988617
       Target Frame: viewer
       Value: Orbit (rviz_default_plugins)
-      Yaw: 1.8899978399276733
+      Yaw: 3.135000228881836
     Saved:
       - Class: rviz_default_plugins/ThirdPersonFollower
         Distance: 18
