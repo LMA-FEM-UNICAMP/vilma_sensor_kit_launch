@@ -13,13 +13,13 @@ sensor_kit_base_link:
     roll: 0.0
     pitch: -0.12350831632256132
     yaw: 0.0
-  # gnss_link: # aka imu_link
-  #   x: 0.006
-  #   y: -0.011
-  #   z: 0.165 # 10 cm higher
-  #   roll: 0.0017453
-  #   pitch: -0.0001745
-  #   yaw: 0.0684169
+  gnss_link: # aka imu_link
+    x: 0.006
+    y: -0.011
+    z: 0.115 # 5 cm higher
+    roll: 0.0017453
+    pitch: -0.0001745
+    yaw: 0.0684169
   imu_link:
     x: 0.006
     y: -0.011
