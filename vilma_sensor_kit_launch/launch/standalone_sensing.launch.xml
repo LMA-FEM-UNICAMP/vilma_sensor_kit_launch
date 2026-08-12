@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
   <!-- Essential parameters -->
-  <arg name="map_path" default="$(env HOME)/autoware_data/maps" description="point cloud and lanelet2 map directory path"/>
+  <arg name="map_path" default="$(env HOME)/autoware_data/autoware_maps/vilma_autoware_maps/testbed" description="point cloud and lanelet2 map directory path"/>
   <arg name="vehicle_model" default="vilma_vehicle" description="vehicle model name"/>
   <arg name="sensor_model" default="vilma_sensor_kit" description="sensor model name"/>
   <arg name="pointcloud_container_name" default="pointcloud_container"/>
@@ -15,7 +15,7 @@
   <!-- Modules to be launched -->
   <arg name="launch_vehicle" default="true" description="launch vehicle"/>
   <arg name="launch_system" default="false" description="launch system"/>
-  <arg name="launch_map" default="false" description="launch map"/>
+  <arg name="launch_map" default="true" description="launch map"/>
   <arg name="launch_sensing" default="true" description="launch sensing"/>
   <arg name="launch_sensing_driver" default="true" description="launch sensing driver"/>
   <arg name="launch_localization" default="false" description="launch localization"/>
@@ -27,7 +27,7 @@
   <arg name="use_sim_time" default="false" description="use_sim_time"/>
   <!-- Vehicle -->
   <arg name="vehicle_id" default="$(env VEHICLE_ID default)" description="vehicle specific ID"/>
-  <arg name="launch_vehicle_interface" default="false" description="launch vehicle interface"/>
+  <arg name="launch_vehicle_interface" default="true" description="launch vehicle interface"/>
   <!-- Control -->
   <arg name="check_external_emergency_heartbeat" default="false"/>
   <!-- Map -->
